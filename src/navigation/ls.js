@@ -1,4 +1,5 @@
 import * as fs from 'fs/promises';
+import { color } from '../constants.js';
 
 export const listFiles = async (path) => {
   try {

@@ -6,6 +6,8 @@ import { stopProcess } from './utils/stopProcess.js';
 import { goUp } from './navigation/up.js';
 import { changeDir } from './navigation/cd.js';
 import { listFiles } from './navigation/ls.js';
+import { read } from './fs/read.js';
+import { create } from './fs/create.js'
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -36,7 +38,12 @@ const fileManager = async() => {
         case 'ls':
           await listFiles(workingDir);
           break;
-
+        case 'cat':
+          await read(workingDir, value);
+          break;
+        case 'add':
+          await create(workingDir, value);
+          break;
         default:
           process.stdout.write('Invalid input\n');
           break;
