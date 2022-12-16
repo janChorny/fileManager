@@ -8,6 +8,7 @@ import { changeDir } from './navigation/cd.js';
 import { listFiles } from './navigation/ls.js';
 import { read } from './fs/read.js';
 import { create } from './fs/create.js'
+import { renameFile } from './fs/rename.js';
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -23,7 +24,7 @@ const fileManager = async() => {
   process.stdin.on('data', async (data) => {
     try {
       const inputTostring = data.toString().trim();
-      const [command, value] = checkInputData(inputTostring);
+      const [command, value, newValue] = checkInputData(inputTostring);
     
       switch (command) {
         case '.exit':
@@ -43,6 +44,9 @@ const fileManager = async() => {
           break;
         case 'add':
           await create(workingDir, value);
+          break;
+        case 'rn':
+          await renameFile(workingDir, value, newValue);
           break;
         default:
           process.stdout.write('Invalid input\n');
