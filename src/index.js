@@ -9,6 +9,7 @@ import { listFiles } from './navigation/ls.js';
 import { read } from './fs/read.js';
 import { create } from './fs/create.js'
 import { renameFile } from './fs/rename.js';
+import { copyFiles } from './fs/copy.js';
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -47,6 +48,9 @@ const fileManager = async() => {
           break;
         case 'rn':
           await renameFile(workingDir, value, newValue);
+          break;
+        case 'cp':
+          await copyFiles(workingDir, value, newValue);
           break;
         default:
           process.stdout.write('Invalid input\n');

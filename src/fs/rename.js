@@ -10,6 +10,5 @@ export const renameFile = async (filePath, value, newFileName) => {
     console.log(`${color.green}File successfully renamed to ${newFileName}!${color.white}\n`)
   } catch (err) {
     console.log(`${color.red}Operation failed${color.white}\n`);
-    console.log(err.message);
   }
 }
