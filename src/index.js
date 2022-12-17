@@ -10,6 +10,8 @@ import { read } from './fs/read.js';
 import { create } from './fs/create.js'
 import { renameFile } from './fs/rename.js';
 import { copyFiles } from './fs/copy.js';
+import { moveFile } from './fs/move.js';
+import { deleteFile } from './fs/delete.js';
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -51,6 +53,12 @@ const fileManager = async() => {
           break;
         case 'cp':
           await copyFiles(workingDir, value, newValue);
+          break;
+        case 'mv':
+          await moveFile(workingDir, value, newValue);
+          break;
+        case 'rm':
+          await deleteFile(workingDir, value);
           break;
         default:
           process.stdout.write('Invalid input\n');
