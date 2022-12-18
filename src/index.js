@@ -14,6 +14,8 @@ import { moveFile } from './fs/move.js';
 import { deleteFile } from './fs/delete.js';
 import { getOsInfo } from './os/getOsInfo.js';
 import { calculateHash } from './hash/hash.js';
+import { compressFile } from './zip/compress.js';
+import { decompressFile } from './zip/decompress.js';
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -67,6 +69,12 @@ const fileManager = async() => {
           break;
         case 'hash':
           await calculateHash(workingDir, value);
+          break;
+        case 'compress':
+          await compressFile(workingDir, value, newValue);
+          break;
+        case 'decompress':
+          await decompressFile(workingDir, value, newValue);
           break;
         default:
           process.stdout.write('Invalid input\n');
