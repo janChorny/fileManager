@@ -12,6 +12,7 @@ import { renameFile } from './fs/rename.js';
 import { copyFiles } from './fs/copy.js';
 import { moveFile } from './fs/move.js';
 import { deleteFile } from './fs/delete.js';
+import { getOsInfo } from './os/getOsInfo.js';
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -60,13 +61,15 @@ const fileManager = async() => {
         case 'rm':
           await deleteFile(workingDir, value);
           break;
+        case 'os':
+          await getOsInfo(value);
+          break;
         default:
           process.stdout.write('Invalid input\n');
           break;
       }
     } catch (error) {
       process.stdout.write(`${color.red}Operation failed${color.white}\n`);
-      console.log(error.message);
     } finally {
       process.stdout.write(`${color.cyan}You are currently in ${color.yellow}${workingDir}${color.white}.\n`);
     }
