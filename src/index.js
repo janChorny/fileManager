@@ -13,6 +13,7 @@ import { copyFiles } from './fs/copy.js';
 import { moveFile } from './fs/move.js';
 import { deleteFile } from './fs/delete.js';
 import { getOsInfo } from './os/getOsInfo.js';
+import { calculateHash } from './hash/hash.js';
 
 const fileManager = async() => {
   const userName = getUserName();
@@ -63,6 +64,9 @@ const fileManager = async() => {
           break;
         case 'os':
           await getOsInfo(value);
+          break;
+        case 'hash':
+          await calculateHash(workingDir, value);
           break;
         default:
           process.stdout.write('Invalid input\n');
