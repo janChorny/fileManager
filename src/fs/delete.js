@@ -1,4 +1,4 @@
-import { color } from "../constants.js";
+import { color } from "../utils/constants.js";
 import { rm } from 'fs/promises';
 import { isPathExist } from '../utils/isPathExist.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
@@ -11,10 +11,10 @@ export const deleteFile = async (filePath, value) => {
     if (isPath) {
       rm(currentPath);
       console.log(`${color.green}File successfully deleted!${color.white}`)
-      } else {
+    } else {
       console.log(`${color.red}Operation failed!${color.white}`);
       console.log(`${color.red}${error.message}${color.white}`);
-      }
+    }
   } catch (error) {
     console.log(`${color.red}Operation failed!${color.white}`);
     console.log(`${color.red}${error.message}${color.white}`);

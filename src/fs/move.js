@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 import { createReadStream, createWriteStream } from 'fs';
 import { rm } from 'fs/promises';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';

@@ -1,7 +1,7 @@
 import * as os from 'os';
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 
-export const getOsInfo = async(value) => {
+export const getOsInfo = async (value) => {
   try {
     switch (value) {
       case '--EOL':
@@ -30,10 +30,10 @@ export const getOsInfo = async(value) => {
         break;
 
       default:
-        console.log(`${color.magenta}Invalid input${color.white}\n`);
+        console.log(`${color.magenta}Invalid input${color.white}`);
         break;
     }
   } catch (error) {
-    console.log(`${color.red}Operation failed${color.white}\n`);
+    console.log(`${color.red}Operation failed${color.white}`);
   }
 }

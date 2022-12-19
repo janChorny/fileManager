@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { isAbsolute } from 'path';
-import { color } from '../constants.js';
+import { color } from './constants.js';
 
 export const isPathAbsolute = async (filePath, value) => {
   try {

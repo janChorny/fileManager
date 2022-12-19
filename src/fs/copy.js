@@ -1,9 +1,9 @@
 import * as path from 'path';
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 import { createReadStream, createWriteStream } from 'fs';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 
-export const copyFiles = async(filePath, value, newFilePath) => {
+export const copyFiles = async (filePath, value, newFilePath) => {
   try {
     const currentPath = await isPathAbsolute(filePath, value);
     const newPath = path.join(newFilePath, path.basename(currentPath));
@@ -17,7 +17,7 @@ export const copyFiles = async(filePath, value, newFilePath) => {
       writeStream.on('close', () => {
         console.log(`${color.green}File successfully copied!${color.white}`)
         resolve();
-        });
+      });
     })
   } catch (error) {
     console.log(`${color.red}Operation failed!${color.white}`);

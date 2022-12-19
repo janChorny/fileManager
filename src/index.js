@@ -1,7 +1,7 @@
-import { color } from './constants.js';
-import { getUserName } from './getUserName.js';
+import { color } from './utils/constants.js';
+import { getUserName } from './getUserName/getUserName.js';
 import { homedir } from 'os';
-import { checkInputData } from './checkInputData.js';
+import { checkInputData } from './utils/checkInputData.js';
 import { stopProcess } from './utils/stopProcess.js';
 import { goUp } from './navigation/up.js';
 import { changeDir } from './navigation/cd.js';
@@ -17,14 +17,14 @@ import { calculateHash } from './hash/hash.js';
 import { compressFile } from './zip/compress.js';
 import { decompressFile } from './zip/decompress.js';
 
-const fileManager = async() => {
+const fileManager = async () => {
   const userName = getUserName();
   let workingDir = homedir();
 
   const greetingMessage = `${color.green}Welcome to the File Manager, ${color.cyan}${userName}!\n`;
   const directoryMessage = `${color.cyan}You are currently in ${color.yellow}${workingDir}${color.white}.\n`;
   const goodbyeMessage = `${color.green}Thank you for using File Manager, ${color.cyan}${userName}, ${color.green}goodbye!\n`;
-  
+
   process.stdout.write(greetingMessage);
   process.stdout.write(directoryMessage);
 
@@ -32,7 +32,7 @@ const fileManager = async() => {
     try {
       const inputTostring = data.toString().trim();
       const [command, value, newValue] = checkInputData(inputTostring);
-    
+
       switch (command) {
         case '.exit':
           stopProcess(goodbyeMessage);

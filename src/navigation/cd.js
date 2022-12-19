@@ -1,4 +1,4 @@
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 import { isPathExist } from '../utils/isPathExist.js';
 

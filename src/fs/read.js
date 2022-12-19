@@ -1,5 +1,5 @@
 import { createReadStream } from 'fs';
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 
 export const read = async (filePath, value) => {

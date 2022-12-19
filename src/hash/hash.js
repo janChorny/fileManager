@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 
 export const calculateHash = async (filePath, value) => {

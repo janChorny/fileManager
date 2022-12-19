@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { rename } from 'fs/promises';
-import { color } from '../constants.js';
+import { color } from '../utils/constants.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 
 export const renameFile = async (filePath, value, newFileName) => {
