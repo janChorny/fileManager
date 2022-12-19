@@ -19,7 +19,7 @@ export const listFiles = async (path) => {
     result = directories.concat(_files);
     console.table(result);
   } catch (error) {
-    console.log(`${color.red}Operation failed${color.white}\n`);
+    console.log(`${color.red}Operation failed${color.white}`);
   }
 }
 
