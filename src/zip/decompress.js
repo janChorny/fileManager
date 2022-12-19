@@ -1,15 +1,15 @@
-import { createUnzip } from 'zlib';
 import { createReadStream, createWriteStream } from 'fs';
 import * as path from 'path';
 import { color } from '../utils/constants.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
+import * as zlib from 'zlib';
 
 export const decompressFile = async (filePath, value, pathToDestination) => {
   try {
     const currentPath = await isPathAbsolute(filePath, value);
     const decompressedFileName = path.basename(currentPath).split('.').slice(0, -1).join('.');
     const newPath = path.join(pathToDestination, decompressedFileName);
-    const unzip = createUnzip();
+    const unzip = zlib.createBrotliDecompress();
     const inp = createReadStream(currentPath);
     const out = createWriteStream(newPath);
     inp.pipe(unzip).pipe(out);

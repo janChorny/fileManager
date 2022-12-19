@@ -1,15 +1,15 @@
-import { createGzip } from 'zlib';
 import { createReadStream, createWriteStream } from 'fs';
 import * as path from 'path';
 import { color } from '../utils/constants.js';
 import { isPathAbsolute } from '../utils/isPathAbsolute.js';
+import * as zlib from 'zlib';
 
 export const compressFile = async (filePath, value, pathToDestination) => {
   try {
     const currentPath = await isPathAbsolute(filePath, value);
     const compressedFileName = `${path.basename(currentPath)}.gz`;
     const newPath = path.join(pathToDestination, compressedFileName);
-    const gzip = createGzip();
+    const gzip = zlib.createBrotliCompress();
     const inp = createReadStream(currentPath);
     const out = createWriteStream(newPath);
     inp.pipe(gzip).pipe(out);
