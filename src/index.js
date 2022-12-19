@@ -77,11 +77,12 @@ const fileManager = async() => {
           await decompressFile(workingDir, value, newValue);
           break;
         default:
-          process.stdout.write('Invalid input\n');
+          process.stdout.write('Invalid input!\n');
           break;
       }
     } catch (error) {
-      process.stdout.write(`${color.red}Operation failed${color.white}\n`);
+      process.stdout.write(`${color.red}Operation failed!${color.white}\n`);
+      process.stdout.write(`${color.red}${error.message}${color.white}\n`);
     } finally {
       process.stdout.write(`${color.cyan}You are currently in ${color.yellow}${workingDir}${color.white}.\n`);
     }

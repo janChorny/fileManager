@@ -1,20 +1,23 @@
-import * as path from 'path';
 import { createWriteStream } from 'fs';
 import { isPathExist } from '../utils/isPathExist.js';
 import { color } from '../constants.js';
+import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 
 export const create = async (filePath, value) => {
   try {
-    const createPath = path.join(filePath, value);
+
+    const createPath = await isPathAbsolute(filePath, value);
     const isPath = await isPathExist(createPath);
 
     if (isPath) {
-      console.log(`${color.red}Operation failed${color.white}\n`);
+      console.log(`${color.red}File already exists!${color.white}`);
+    } else {
+      const writeStream = createWriteStream(createPath);
+      writeStream.end();
+      console.log(`${color.green}File successfully added!${color.white}`);
     }
-
-    const writeStream = createWriteStream(createPath);
-    writeStream.end();
-  } catch (err) {
-    console.log(`${color.red}Operation failed${color.white}\n`);
+  } catch (error) {
+    console.log(`${color.red}Operation failed!${color.white}`);
+    console.log(`${color.red}${error.message}${color.white}`);
   }
 }
