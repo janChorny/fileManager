@@ -16,6 +16,7 @@ import { getOsInfo } from './os/getOsInfo.js';
 import { calculateHash } from './hash/hash.js';
 import { compressFile } from './zip/compress.js';
 import { decompressFile } from './zip/decompress.js';
+import { createInterface } from 'node:readline/promises';
 
 const fileManager = async () => {
   const userName = getUserName();
@@ -28,7 +29,9 @@ const fileManager = async () => {
   process.stdout.write(greetingMessage);
   process.stdout.write(directoryMessage);
 
-  process.stdin.on('data', async (data) => {
+  const readline = createInterface(process.stdin, process.stdout);
+
+  readline.on('line', async (data) => {
     try {
       const inputTostring = data.toString().trim();
       const [command, value, newValue] = checkInputData(inputTostring);
@@ -87,6 +90,9 @@ const fileManager = async () => {
       process.stdout.write(`${color.cyan}You are currently in ${color.yellow}${workingDir}${color.white}.\n`);
     }
   })
+  readline.on('close', () => {
+    stopProcess(goodbyeMessage);
+  });
 };
 
 fileManager();

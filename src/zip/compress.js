@@ -8,7 +8,8 @@ export const compressFile = async (filePath, value, pathToDestination) => {
   try {
     const currentPath = await isPathAbsolute(filePath, value);
     const compressedFileName = `${path.basename(currentPath)}.gz`;
-    const newPath = path.join(pathToDestination, compressedFileName);
+    const newCheckedPath = await isPathAbsolute(filePath, pathToDestination);
+    const newPath = path.join(newCheckedPath, compressedFileName);
     const gzip = zlib.createBrotliCompress();
     const inp = createReadStream(currentPath);
     const out = createWriteStream(newPath);

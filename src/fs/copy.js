@@ -6,7 +6,8 @@ import { isPathAbsolute } from '../utils/isPathAbsolute.js';
 export const copyFiles = async (filePath, value, newFilePath) => {
   try {
     const currentPath = await isPathAbsolute(filePath, value);
-    const newPath = path.join(newFilePath, path.basename(currentPath));
+    const newCheckedPath = await isPathAbsolute(filePath, newFilePath);
+    const newPath = path.join(newCheckedPath, path.basename(currentPath));
     const readStream = createReadStream(currentPath)
     const writeStream = createWriteStream(newPath)
 

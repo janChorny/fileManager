@@ -1,10 +1,17 @@
 import * as path from 'path';
 import { isAbsolute } from 'path';
+import { goUp } from '../navigation/up.js';
 import { color } from './constants.js';
 
 export const isPathAbsolute = async (filePath, value) => {
   try {
-    if (isAbsolute(value)) {
+    if (!value){
+      return
+    }
+    else if (value === `..` || value === `./`) {
+      return goUp(filePath);
+    }
+    else if (isAbsolute(value)) {
       return value;
     } else {
       return path.join(filePath, value);
